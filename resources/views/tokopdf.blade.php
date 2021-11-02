@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="barcode" style="text-align:center;width:143px;height:63px;padding-top: 5px;margin-left:-15px;margin-right:16px;font-size:12px">                   
+<div class="barcode" style="text-align:center;width:143px;height:63px;padding-top: 5px;margin-left:-35px;margin-right:44px;font-size:12px;margin-top:-18px">                   
 <?php
                              $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
                              echo '<img style="width: 125px;height:25px;" src="data:image/png;base64,' . base64_encode($generator->getBarcode($id, $generator::TYPE_CODE_128)) . '">';                                    

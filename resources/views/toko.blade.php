@@ -92,7 +92,7 @@
                                     </div>
                                         <br>
                                         <label>Result:</label>
-                                        <pre><code id="result"></code></pre>
+                                        <pre><code id="barcode"></code></pre>
 
                                         </section>
                                     </main>
@@ -103,7 +103,11 @@
                                     @csrf-->
                                         <div class="form-group">
                                             <label>Barcode ID:</label>
-                                            <input type="text" class="form-control barcode" id="barcode" placeholder="Hasil Barcode" name="barcode">
+                                            <input type="text" class="form-control barcode" id="id_toko" placeholder="Hasil Barcode" name="barcode">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nama Toko:</label>
+                                            <input type="text" class="form-control barcode" id="nama_toko" placeholder="Hasil Barcode" name="barcode">
                                         </div>
                                         <div class="form-group">
                                             <label>Latitude Toko :</label>
@@ -191,31 +195,6 @@
                 <script type="text/javascript" src="https://unpkg.com/@zxing/library@0.18.3-dev.7656630/umd/index.js"></script>
                 <script type="text/javascript">
 
-                $('#from').change(function(){
-                        var id = $(this).val(); 
-                        console.log(id);   
-                        if(id){
-                            $.ajax({
-                            type:"GET",
-                            url:"/getto?id="+id,
-                            dataType: 'JSON',
-                            success:function(res){               
-                                if(res){
-                                    $("#to").empty();
-                                    $("#to").append('<option>---Pilih Data---</option>');
-                                    $.each(res,function(nama,kode){
-                                        $("#to").append('<option value="'+kode+'">'+kode+' - '+nama+'</option>');
-                                    });
-                                }else{
-                                $("#to").empty();
-                                }
-                            }
-                            });
-                        }else{
-                            $("#to").empty();
-                        }      
-                    });
-
                     window.addEventListener('load', function () {
                     let selectedDeviceId;
                     const codeReader = new ZXing.BrowserMultiFormatReader()
@@ -244,11 +223,13 @@
                             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
                             if (result) {
                                 console.log(result)
-                                document.getElementById('result').textContent = result.text
+                                document.getElementById('barcode').textContent = result.text;
+                                getDataLocation(result.text);
+                                console.log(result.text);
                             }
                             if (err && !(err instanceof ZXing.NotFoundException)) {
                                 console.error(err)
-                                document.getElementById('result').textContent = err
+                                document.getElementById('barcode').textContent = err
                             }
                             })
                             console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
@@ -269,22 +250,26 @@
                     var latitude_toko;
                     var longitude_toko;
                     var accuracy_toko;
-                    function getDataLocation($id_toko){
-                                    var id_toko = $id_toko;
+                    function getDataLocation($barcode){
+                                    var id_toko = $barcode;
                                     $.ajax({
                                         url: "{{ url('/toko/getLocationToko') }}",
                                         type: "POST",
                                         data: {
-                                            idtoko: id_toko,
+                                            id_toko: id_toko,
                                             _token: '{{csrf_token()}}'
                                         },
                                         dataType: 'json',
                                         success: function (result) {
                                             $.each(result.location, function (key, value) {
+                                                id_toko = value.id_toko;
+                                                nama_toko = value.nama_toko;
                                                 longitude_toko = value.longitude;
                                                 latitude_toko = value.latitude;
                                                 accuracy_toko = value.accuracy;
                                             });
+                                            document.getElementById('id_toko').value = id_toko;
+                                            document.getElementById('nama_toko').value = nama_toko;
                                             document.getElementById('latitude_toko').value = latitude_toko;
                                             document.getElementById('longitude_toko').value = longitude_toko;
                                             document.getElementById('accuracy_toko').value = accuracy_toko;

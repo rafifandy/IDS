@@ -57,18 +57,18 @@ class C_toko extends Controller
     {
         $pdf = PDF::loadView('tokopdf', compact('id'));
     
-       return $pdf->download('barcodeToko-'.$id.'.pdf');
+       return $pdf->stream('barcodeToko-'.$id.'.pdf');
     }
 
     public function getLocationToko(Request $request){
-        $data['location'] = toko::where("id_toko",$request->id_toko)->get(["latitude", "longitude","accuracy"]);
+        $data['location'] = toko::where("id_toko",$request->id_toko)->get(["id_toko","nama_toko","latitude", "longitude","accuracy"]);
         //dd($data);
         return response()->json($data);
     }
 
     public function getDistanceFromLatLonInKm(Request $request) {
         //dd($request->barcode);
-        $toko = DB::table('toko')->where('id_toko',$request->id_toko)->get();
+        $toko = DB::table('toko')->where('id_toko',$request->barcode)->get();
         //$toko = lokasi_toko::where('barcode',$request->barcode);
         //dd($toko);
         foreach($toko as $value){
