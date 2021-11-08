@@ -121,11 +121,15 @@
                 @csrf
                     <div class="form-group">
                         <label for="baris_barang">Baris</label>
-                        <input type="number" class="form-control" id="baris_barang" placeholder="baris Barang" name="baris_barang" value='1'required>
+                        <input type="number" class="form-control" id="baris_barang" placeholder="baris Barang" name="baris_barang" required>
                     </div>
                     <div class="form-group">
                         <label for="kolom_barang">Kolom</label>
-                        <input type="number" class="form-control" id="kolom_barang" placeholder="kolom Barang" name="kolom_barang" value='1'required>
+                        <input type="number" class="form-control" id="kolom_barang" placeholder="kolom Barang" name="kolom_barang" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jml_barang">Jumlah</label>
+                        <input type="number" class="form-control" id="jml_barang" placeholder="jumlah cetak" name="jml" required>
                     </div>
                     <div class="form-group">
                          <label  class="form-label">From</label>

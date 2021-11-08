@@ -47,22 +47,53 @@ class C_barang extends Controller
         return redirect('/barang')->with('status','Data Berhasil Ditambahkan!!!'); 
     }
 
-    public function cetak(Request $request){
+    public function cetak2(Request $request){
         //dd($barang);
         //$data = Barang::all();
         $data = Barang::where("id_barang",'>=',$request->from)->where("id_barang",'<=',$request->to)->get();
         $baris = $request->baris_barang;
         $kolom = $request->kolom_barang;
-        $long = count($data);
-        $long =intval($long/5);
-        $long++;
+        $emp=(($baris*5)-5)+($kolom-1);
+        $longs = count($data);
+        $longs = $longs+$emp;
+        $long =intval($longs/5);
+        if ($longs % 5 != 0){
+        $long++;}
         //dd($baris,$kolom);
-        $pdf = PDF::loadView('barangpdf', compact('data','long','baris','kolom'));
-    
+        $pdf = PDF::loadView('barangpdf', compact('data','long','baris','kolom','emp'));
        return $pdf->stream('barangBarcode.pdf',array("Attachment" => 0));
         
         //return view('barang.barcodePDF',compact('data','long','baris','kolom'));
     }
+
+    public function cetak(Request $request)
+    {
+        //$dataa = $request->id_barang;
+        //$datab = explode(",", $dataa);
+        //$barang = DB::table('barang')->whereIn('id_barang', $datab)->get();
+        $barang = Barang::where("id_barang",'>=',$request->from)->where("id_barang",'<=',$request->to)->get();
+        $no = 1;
+        $x = 1;
+        $col = $request->kolom_barang;
+        $row = $request->baris_barang;
+        $jml = $request->jml;
+        $panjang=(($row-1)*5)+($col-1);
+        $data = array(
+            'menu' => 'Barcode',
+            'barang' => $barang,
+            'no' => $no,
+            'x' => $x,
+            'col' => $col,
+            'row' => $row,
+            'jml' => $jml,
+            'panjang' => $panjang,
+            'submenu' => '',
+        );
+          
+        $customPaper = array(0,0,611.7,469.47);
+        return PDF::loadView('barangpdf2', $data)->setPaper($customPaper)->stream('barangBarcode.pdf');
+    }
+
     public function getTo(Request $request){
         $to = Barang::where("id_barang",'>=',$request->id)->pluck('id_barang','nama');
         return response()->json($to);

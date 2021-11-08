@@ -129,6 +129,10 @@
                                             <label>Longitude:</label>
                                             <input type="text" class="form-control" id="longitude" placeholder="Longitude" name="longitude" value="">
                                         </div>
+                                        <div class="form-group">
+                                            <label>Accuracy:</label>
+                                            <input type="text" class="form-control" id="acc" placeholder="Accuracy" name="acc" value="">
+                                        </div>
                                         <a class="btn btn-success" id="" href="#" onclick="getLocation()">Generate Location</a>
                                         <button class="btn btn-primary" onclick="hasilJarak()">Submit</button>
                                     <!--</form>-->
@@ -170,7 +174,7 @@
                         </div>
                         <div class="form-group">
                             <label for="accuracy">Accuracy</label>
-                            <input type="number" class="form-control" id="accuracy" placeholder="" name="accuracy" required>
+                            <input type="number" class="form-control" id="accuracy" placeholder="" name="accuracy" step="any" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         &nbsp;
@@ -282,6 +286,7 @@
                         <script>
                     var x = document.getElementById("latitude");
                     var y = document.getElementById("longitude");
+                    var z = document.getElementById("acc");
                     var jarak;
                     var latitude_user;
                     var longitude_user;
@@ -297,6 +302,7 @@
                     function showPosition(position) {
                     x.value = position.coords.latitude;
                     y.value = position.coords.longitude;
+                    z.value = position.coords.accuracy;
                     accuracy_user = position.coords.accuracy;
                     latitude_user = position.coords.latitude;
                     longitude_user = position.coords.longitude;
@@ -348,6 +354,7 @@
                         
                         var a = document.getElementById("lat");
                         var b = document.getElementById("long");
+                        var c = document.getElementById("accuracy");
                         function getLocation2() {
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition(showPosition2);
@@ -359,6 +366,7 @@
                         function showPosition2(position) {
                         a.value = position.coords.latitude;
                         b.value = position.coords.longitude;
+                        c.value = position.coords.accuracy;
                         accuracy_user = position.coords.accuracy;
                         latitude_user = position.coords.latitude;
                         longitude_user = position.coords.longitude;
