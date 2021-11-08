@@ -7,6 +7,7 @@
         }
         td{
             padding: 7px;
+            font-size: 12px;
         }
         @page { margin: 0px; }
         body { margin: 0px; }
@@ -25,7 +26,7 @@
     <tr>
     @foreach(range(0,$panjang) as $key)
     @if($x++ <= $panjang)
-        <td style="text-align: center; border: 0px solid black" width="111" height="44">
+        <td style="text-align: center; border: 0px solid black" width="111" height="46" display:block>
         </td>
     @if ($no++ % 5 == 0)
     </tr>
@@ -34,8 +35,8 @@
     @else
     @foreach($barang as $data)
     @for ($i=0;$i < $jml;$i++)
-        <td style="text-align: center; border: 0px solid black" width="111" height="44" display:block>
-            <img width="120" src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($data->id_barang, $generatorPNG::TYPE_CODE_128)) }}"><br>
+        <td style="text-align: center; border: 0px solid black" width="111" height="46" display:block>
+            <img width="110" src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($data->id_barang, $generatorPNG::TYPE_CODE_128)) }}"><br>
             <!-- {!! $generator->getBarcode($data->id_barang, $generator::TYPE_CODE_128) !!} -->
             {{ $data->id_barang }}<br>
             {{ $data->nama }}
