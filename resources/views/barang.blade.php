@@ -21,6 +21,11 @@
                                     <i class="fas fa-table me-1"></i>
                                     Data Barang
                                 </div>
+                                @if (session('status'))
+                                        <div class="alert alert-success">
+                                            {{ session('status') }}
+                                        </div>
+                                @endif
                                 <div class="card-body">
                                     <table id="datatablesSimple">
                                         <thead>

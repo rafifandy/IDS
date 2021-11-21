@@ -23,6 +23,35 @@
             <i class="fas fa-table me-1"></i>
             Data Customer
         </div>
+        @if (session('status'))
+              <div class="alert alert-success">
+                  {{ session('status') }}
+              </div>
+        @endif
+        @if(isset($errors) && $errors->any())
+                    <div class="alert alert-danger">
+                      @foreach($errors->all() as $error)
+                      {{ $error }}
+                      @endforeach
+                    </div>
+              @endif
+              @if (session()->has('failures'))
+                  <div class="alert alert-success">
+                      File Imported
+                  </div>
+                  <table class="table table-warning">
+                    <tr>
+                      <td>Warning</td>
+                    </tr>
+                    @foreach(session()->get('failures') as $validation)
+                      <tr>
+                        <td>
+                            Duplicated value id {{ $validation->values()[$validation->attribute()]}}
+                        </td>
+                      </tr>
+                    @endforeach
+                  </table>
+              @endif
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>

@@ -9,8 +9,11 @@ use Maatwebsite\Excel\Concerns\SkipsonFailure;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Validators\Failure;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use validation;
 
-class I_customer implements ToModel,SkipsonError,SkipsonFailure
+class I_customer implements ToModel,WithValidation,SkipsonError,SkipsonFailure
 {
     /**
     * @param array $row
@@ -18,12 +21,12 @@ class I_customer implements ToModel,SkipsonError,SkipsonFailure
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     use Importable, SkipsErrors,SkipsFailures;
-    // public function rules(): array
-    // {
-    //     return [
-    //         '0' => 'unique:customer,id_cust',
-    //     ];
-    // }
+    public function rules(): array
+    {
+        return [
+            '0' => 'unique:tbl_customer,id_cust',
+        ];
+    }
     public function model(array $row)
     {
         return new Customer([

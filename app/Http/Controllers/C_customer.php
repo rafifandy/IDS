@@ -120,7 +120,6 @@ class C_customer extends Controller
                 if($import->failures()) {
                     return back()->withFailures($import->failures());
                 }
-                File::delete($files);
                 //dd($import->errors());
                 //(new CustomerImport)->import($file);
                 // alihkan halaman kembali
