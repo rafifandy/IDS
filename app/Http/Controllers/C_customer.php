@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 //use App\Http\Controllers\Storage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
@@ -119,6 +120,7 @@ class C_customer extends Controller
                 if($import->failures()) {
                     return back()->withFailures($import->failures());
                 }
+                File::delete($files);
                 //dd($import->errors());
                 //(new CustomerImport)->import($file);
                 // alihkan halaman kembali
