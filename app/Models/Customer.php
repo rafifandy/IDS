@@ -11,7 +11,7 @@ class Customer extends Model
     
     protected $table = 'tbl_customer';
     protected $primaryKey = 'id_cust';
-    protected $fillable = ['id_cust','nama','alamat','foto','path','id_kel'];
+    protected $fillable = ['id_cust','nama','alamat','foto','path','id_kel','kodepos'];
     
     public $timestamps = false;
     public $incrementing = false;

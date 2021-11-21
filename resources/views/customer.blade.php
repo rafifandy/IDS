@@ -10,6 +10,10 @@
     
     <!-- Page Heading -->
     <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalBlob">Tambah Customer</button>
+    &nbsp;
+ 
+		<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#importExcel">Import</button>
+    <a href="/customer/export" class="btn btn-success" target="_blank">Export</a>
     <hr/>
     <!--
     <button class="btn btn-success" onClick="oncam2()" type="button" data-bs-toggle="modal" data-bs-target="#modalPath">Tambah Customer - Path</button>
@@ -62,11 +66,18 @@
                     <td>C0{{$c->id_cust}}</td>
                     @elseif ($c->id_cust < 10000000)
                     <td>C{{$c->id_cust}}</td>
+                    @else
+                    <td>{{$c->id_cust}}</td>
                     @endif
 
                     <td>{{$c->nama}}</td>
+                    @if ($c->id_kel == null)
+                    <td>{{$c->alamat}}</td>
+                    <td>{{$c->kodepos}}</td>
+                    @else
                     <td>{{$c->alamat}}, {{$c->kelurahan->kelurahan}}, {{$c->kelurahan->kecamatan->kecamatan}}, {{$c->kelurahan->kecamatan->kabupaten->kabupaten_kota}}, {{$c->kelurahan->kecamatan->kabupaten->provinsi->provinsi}}</td>
                     <td>{{$c->kelurahan->kd_pos}}</td>
+                    @endif
                     <td>
                     @if(str_starts_with($c->foto,'data'))
                     <img src="{{ $c->foto }}" height="150" width="200">
@@ -90,7 +101,32 @@
             </table>
         </div>
     </div>
-
+<!-- Import Excel -->
+<div class="modal fade" id="importExcel" tabindex="-2" role="dialog" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<form method="post" action="/customer/import" enctype="multipart/form-data">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+						</div>
+						<div class="modal-body">
+ 
+							@csrf
+ 
+							<label>Pilih file excel</label>
+							<div class="form-group">
+								<input type="file" id="excel" name="excel" accept=".xls, .xlsx" required="required">
+							</div>
+ 
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Import</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 <!-- Modal Blob-->
 <div class="modal fade" id="modalBlob" tabindex="-2" role="dialog" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

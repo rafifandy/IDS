@@ -11,6 +11,10 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Customer;
+use App\Exports\E_customer;
+use App\Imports\I_customer;
+use Maatwebsite\Excel\Facades\Excel;
+use Session;
 
 class C_customer extends Controller
 {
@@ -94,6 +98,58 @@ class C_customer extends Controller
         return redirect('/customer')->with('status','Data Berhasil Ditambahkan!!!'); 
     }
 
+    public function export()
+	{
+		return Excel::download(new E_customer, 'cust.xlsx');
+	}
+
+    public function import(Request $request)
+    {
+        // validasi
+		$this->validate($request, [
+			'excel' => 'required|mimes:xls,xlsx'
+		]);
+        if($request->excel){
+               // menangkap file excel
+                $file = $request->file('excel')->store('import');
+                // import data
+                $import = new I_customer;
+                $import->import($file);
+                //dd($import->failures());
+                if($import->failures()) {
+                    return back()->withFailures($import->failures());
+                }
+                //dd($import->errors());
+                //(new CustomerImport)->import($file);
+                // alihkan halaman kembali
+                //return back()->withStatus('file excel is success imported');
+        }
+    }
+    public function import2(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('excel',$nama_file);
+ 
+		// import data
+		Excel::import(new I_customer, public_path('/excel/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('/customer');
+	}
     
     /**
      * Display the specified resource.
