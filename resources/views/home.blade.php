@@ -1,9 +1,23 @@
-@extends('layout/master')
-@section('title','Implementasi dan Deployment Sistem')
+@extends('layouts.app')
+
 @section('content')
-    <embed src="{{ asset('storage/prak_snapshot.pdf')}}" width="800px" height="800px"style=margin-left:auto;margin-right:auto />
-    </br><center>==================</center>
-    <embed src="{{ asset('storage/prak_barcode.pdf')}}" width="800px" height="800px"style=margin-left:auto;margin-right:auto />
-    </br><center>==================</center>
-    <embed src="{{ asset('storage/prak_geolocation.pdf')}}" width="800px" height="800px"style=margin-left:auto;margin-right:auto />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

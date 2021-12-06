@@ -14,9 +14,13 @@ class C_home extends Controller
      */
     public function index()
     {
-        return view('home',['x'=>'home']);
+        return view('auth/login');
     }
     public function index2()
+    {
+        return view('home2',['x'=>'home']);
+    }
+    public function index3()
     {
         return view('home-test');
     }

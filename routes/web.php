@@ -6,6 +6,7 @@ use App\Http\Controllers\C_customer;
 use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_toko;
 use App\Http\Controllers\API\C_buku;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +18,9 @@ use App\Http\Controllers\API\C_buku;
 |
 */
 
-Route::get('/test',[C_home::class,'index2']);
+Route::get('/test',[C_home::class,'index3']);
 Route::get('/',[C_home::class,'index']);
-
+Route::get('/h2', [C_home::class, 'index2'])->name('home2');
 
 //customer
 Route::get('/customer',[C_customer::class,'index']);
@@ -49,3 +50,11 @@ Route::post('/toko/hasil',[C_toko::class,'getDistanceFromLatLonInKm']);
 
 //buku
 Route::resource('/api/buku',C_buku::class);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/auth/redirect',[LoginController::class,'redirectToProvider']);
+Route::get('/auth/callback',[LoginController::class,'handleProviderCallback']);

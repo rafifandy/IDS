@@ -5,9 +5,9 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             @if($x == 'home')
-                            <a class="nav-link active" href="/">
+                            <a class="nav-link active" href="/h2">
                             @else
-                            <a class="nav-link" href="/">
+                            <a class="nav-link" href="/h2">
                             @endif
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Home
