@@ -21,6 +21,12 @@
         
         <style type="text/css">
             #results { padding:20px; border:1px solid; background:#ccc; }
+            .avatar {
+                vertical-align: middle;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
         </style>
         @yield('css')
     </head>

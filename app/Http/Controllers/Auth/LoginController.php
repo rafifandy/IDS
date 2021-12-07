@@ -68,6 +68,8 @@ class LoginController extends Controller
                     'email'             => $user_google->getEmail(),
                     'name'              => $user_google->getName(),
                     'password'          => 0,
+                    'google_id'         => $user_google->getId(),
+                    'pp'                => $user_google->getAvatar(),
                     'email_verified_at' => now()
                 ]);
         
