@@ -36,7 +36,7 @@
                             @else
                             <a class="nav-link" href="/barang">
                             @endif
-                                <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-barcode"></i></div>
                                 Label TnJ 108
                             </a>
                             @if($x == 'toko')
@@ -47,6 +47,29 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                                 Toko
                             </a>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
+                                Scoreboard
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            @if($x == 'scoreboard' or $x == 'console')
+                            <div class="collapse show" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            @else
+                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            @endif
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @if($x == 'scoreboard')
+                                    <a class="nav-link active" href="/scoreboard">Scoreboard</a>
+                                    <a class="nav-link" href="/console">Console</a>
+                                    @elseif($x == 'console')
+                                    <a class="nav-link" href="/scoreboard">Scoreboard</a>
+                                    <a class="nav-link active" href="/console">Console</a>
+                                    @else
+                                    <a class="nav-link" href="/scoreboard">Scoreboard</a>
+                                    <a class="nav-link" href="/console">Console</a>
+                                    @endif
+                                </nav>
+                            </div>
                     <div class="sb-sidenav-footer">
                         <div class="small"></div>
                         

@@ -7,6 +7,8 @@ use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_toko;
 use App\Http\Controllers\API\C_buku;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\C_scoreboard;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,3 +60,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/auth/redirect',[LoginController::class,'redirectToProvider']);
 Route::get('/auth/callback',[LoginController::class,'handleProviderCallback']);
+
+
+Route::get('/scoreboard',[C_scoreboard::class,'index']);
+Route::get('/scoreboard-sse',[C_scoreboard::class,'sse']);
+Route::get('/console',[C_scoreboard::class,'console']);
+Route::post('/scoreboard-console/update-period',[C_scoreboard::class,'updatePeriod']);
+Route::post('/scoreboard-console/reset-period',[C_scoreboard::class,'resetPeriod']);
+Route::post('/scoreboard-console/update-home-name',[C_scoreboard::class,'updateHomeName']);
+Route::post('/scoreboard-console/update-home-score',[C_scoreboard::class,'updateHomeScore']);
+Route::post('/scoreboard-console/reset-home-score',[C_scoreboard::class,'resetHomeScore']);
+Route::post('/scoreboard-console/update-home-foul',[C_scoreboard::class,'updateHomeFoul']);
+Route::post('/scoreboard-console/reset-home-foul',[C_scoreboard::class,'resetHomeFoul']);
+Route::post('/scoreboard-console/update-away-name',[C_scoreboard::class,'updateAwayName']);
+Route::post('/scoreboard-console/update-away-score',[C_scoreboard::class,'updateAwayScore']);
+Route::post('/scoreboard-console/reset-away-score',[C_scoreboard::class,'resetAwayScore']);
+Route::post('/scoreboard-console/update-away-foul',[C_scoreboard::class,'updateAwayFoul']);
+Route::post('/scoreboard-console/reset-away-foul',[C_scoreboard::class,'resetAwayFoul']);
+Route::post('/scoreboard-console/update-home-status',[C_scoreboard::class,'updateHomeStatus']);
+Route::post('/scoreboard-console/update-timer',[C_scoreboard::class,'updateTimer']);
+Route::post('/update-menit-detik',[C_scoreboard::class,'update_menit_detik']);
