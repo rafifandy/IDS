@@ -6,6 +6,8 @@ use App\Http\Controllers\C_customer;
 use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_toko;
 use App\Http\Controllers\API\C_buku;
+use App\Http\Controllers\API\C_coba;
+use App\Http\Controllers\API\MobileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\C_scoreboard;
 
@@ -50,8 +52,10 @@ Route::get('/toko/cetak/{id}',[C_toko::class,'cetak']);
 Route::post('/toko/getLocationToko',[C_toko::class,'getLocationToko']);
 Route::post('/toko/hasil',[C_toko::class,'getDistanceFromLatLonInKm']);
 
-//buku
+//api
 Route::resource('/api/buku',C_buku::class);
+Route::resource('/api/coba',C_coba::class);
+Route::resource('/api/mobile',MobileController::class);
 
 
 Auth::routes();

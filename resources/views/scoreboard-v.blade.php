@@ -13,13 +13,13 @@
 #clockdiv > div{
     padding: 10px;
     border-radius: 3px;
-    background: #00BF96;
+    background: #ABABAB;
     display: inline-block;
 }
 #clockdiv div > span{
     padding: 15px;
     border-radius: 3px;
-    background: #00816A;
+    background: #313131;
     display: inline-block;
 }
 .smalltext{
@@ -47,11 +47,8 @@ input {
     <!-- <div class="timer"></div> -->
     <div>
         <span class="minutes" id="timer_menit"></span>
-        <div class="smalltext">Minutes</div>
-    </div>
-    <div>
+        :
         <span class="seconds" id="timer_detik"></span>
-        <div class="smalltext">Seconds</div>
     </div>
 </div>
 <!-- <div class="timer"></div>
@@ -69,7 +66,7 @@ input {
         <div class="home py-3" id="name_home"></div>
         <input class="score" type="number" id="home" width="20" disabled/>
     </div>
-    <div class="col-lg-2 spasi">:</div>
+    <div class="col-lg-2 spasi"></div>
     <div class="col-lg-5">
         <div class="home py-3 " id="name_away"></div>
         <input class="score" type="number" id="away" width="20" disabled/>

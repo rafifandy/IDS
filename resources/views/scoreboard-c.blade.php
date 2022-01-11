@@ -31,7 +31,7 @@ input {
                 </center>
                 <button class="btn btn-primary m-3" id="score_home_button_plus">+1</button>
                 <!-- <button class="btn btn-primary m-3" id="score_home_button_plus_2"><i class="far fa-plus-square"></i> Poin +2 </button> -->
-                <button class="btn btn-danger m-3" id="score_home_button_minus">-1</button>
+                <button class="btn btn-primary m-3" id="score_home_button_minus">-1</button>
                 <button class="btn btn-warning m-3" id="reset_score_home"> Reset </button>    
             </div>
         </div>
@@ -42,7 +42,7 @@ input {
                     <input type="text" class="form-control" id="score_away" placeholder="Name Tim" value="{{$scoreboard[0]->score_away}}">
                 </center>
                 <button class="btn btn-primary m-3" id="score_away_button_plus">+1</button>
-                <button class="btn btn-danger m-3" id="score_away_button_minus">-1</button>
+                <button class="btn btn-primary m-3" id="score_away_button_minus">-1</button>
                 <button class="btn btn-warning m-3" id="reset_score_away"> Reset </button>    
             </div>
         </div>
@@ -53,7 +53,7 @@ input {
                     <input type="text" class="form-control" id="foul_home" placeholder="Name Tim" value="{{$scoreboard[0]->foul_home}}">
                 </center>
                 <button class="btn btn-primary m-3" id="foul_home_button_plus"> Foul +1 </button>
-                <button class="btn btn-danger m-3" id="foul_home_button_minus"> Foul -1 </button>
+                <button class="btn btn-primary m-3" id="foul_home_button_minus"> Foul -1 </button>
                 <button class="btn btn-warning m-3" id="reset_foul_home"> Reset </button>    
             </div>
         </div>
@@ -64,7 +64,7 @@ input {
                     <input type="text" class="form-control" id="foul_away" placeholder="Name Tim" value="{{$scoreboard[0]->foul_away}}">
                 </center>
                 <button class="btn btn-primary m-3" id="foul_away_button_plus"> Foul +1 </button>
-                <button class="btn btn-danger m-3" id="foul_away_button_minus"> Foul -1 </button>
+                <button class="btn btn-primary m-3" id="foul_away_button_minus"> Foul -1 </button>
                 <button class="btn btn-warning m-3" id="reset_foul_away"> Reset </button>    
             </div>
         </div>
@@ -76,14 +76,16 @@ input {
                 <div class="col-4">
                     <button class="btn btn-warning" id="reset-time"> Reset </button>    
                 </div>
+                <!--
                 <div class="col-4">
                     <button class="btn btn-primary pause" id="pause" onclick="togglePause(1);"><span class="fa fa-play"></span> Play/Pause </button>    
                 </div>
+                -->
             </div>
         </div>
         <!--
         <div class="col-lg-6">
-            <label for="">Pengaturan Musik</label>
+            <label for="">Sound</label>
             <div class="row">
                 <div class="col-2">
                     <h6 class="d-inline-block">1. </h6>
@@ -108,22 +110,22 @@ input {
 </div>
 <audio id="myAudio1">
   <!-- <source src="horse.ogg" type="audio/ogg"> -->
-  <source src="{{ url('/storage/public_asset_lagu_sound1.mp3') }}" type="audio/mpeg">
+  <source src="{{ asset('storage/sound/1.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 <audio id="myAudio2">
   <!-- <source src="horse.ogg" type="audio/ogg"> -->
-  <source src="{{ url('/storage/public_asset_lagu_sound2.mp3') }}" type="audio/mpeg">
+  <source src="{{ asset('storage/sound/2.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 <audio id="myAudio3">
   <!-- <source src="horse.ogg" type="audio/ogg"> -->
-  <source src="{{ url('/storage/public_asset_lagu_sound3.mp3') }}" type="audio/mpeg">
+  <source src="{{ asset('storage/sound/3.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 <audio id="myAudio4">
   <!-- <source src="horse.ogg" type="audio/ogg"> -->
-  <source src="{{ url('/storage/public_asset_lagu_sound4.mp3') }}" type="audio/mpeg">
+  <source src="{{ asset('storage/sound/4.mp3') }}" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -131,51 +133,55 @@ input {
     <script>
     //audio1
     var myAudio = document.getElementById("myAudio1");
+    myAudio.volume = 0.2;
     var isPlaying = false;
     function playAudio1() {
-    isPlaying ? myAudio.pause() : myAudio.play();
+        isPlaying ? myAudio.pause() : myAudio.play();
     };
     myAudio.onplaying = function() {
-    isPlaying = true;
+        isPlaying = true;
     };
     myAudio.onpause = function() {
-    isPlaying = false;
+        isPlaying = false;
     };
     //audio2
     var myAudio2 = document.getElementById("myAudio2");
+    myAudio2.volume = 0.2;
     var isPlaying2 = false;
     function playAudio2() {
-    isPlaying2 ? myAudio2.pause() : myAudio2.play();
+        isPlaying2 ? myAudio2.pause() : myAudio2.play();
     };
     myAudio2.onplaying = function() {
-    isPlaying2 = true;
+        isPlaying2 = true;
     };
     myAudio2.onpause = function() {
-    isPlaying2 = false;
+        isPlaying2 = false;
     };
     //audio3
     var myAudio3 = document.getElementById("myAudio3");
+    myAudio3.volume = 0.2;
     var isPlaying3 = false;
     function playAudio3() {
-    isPlaying3 ? myAudio3.pause() : myAudio3.play();
+        isPlaying3 ? myAudio3.pause() : myAudio3.play();
     };
     myAudio3.onplaying = function() {
-    isPlaying3 = true;
+        isPlaying3 = true;
     };
     myAudio3.onpause = function() {
-    isPlaying3 = false;
+        isPlaying3 = false;
     };
     //audio4
     var myAudio4 = document.getElementById("myAudio4");
+    myAudio4.volume = 0.2;
     var isPlaying4 = false;
     function playAudio4() {
-    isPlaying4 ? myAudio4.pause() : myAudio4.play();
+        isPlaying4 ? myAudio4.pause() : myAudio4.play();
     };
     myAudio4.onplaying = function() {
-    isPlaying4 = true;
+        isPlaying4 = true;
     };
     myAudio4.onpause = function() {
-    isPlaying4 = false;
+        isPlaying4 = false;
     };
     //time
     function togglePause(toPause)
@@ -221,7 +227,7 @@ input {
                     url: "{{ url('/scoreboard-console/update-timer') }}",
                     type: "POST",
                     data: {
-                        menit: 15,
+                        menit: 10,
                         detik: '00',
                         _token: '{{csrf_token()}}'
                     },
