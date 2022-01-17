@@ -14,7 +14,11 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/api/buku',
         '/api/buku/*',
-        '/api/mobile',
-        '/api/mobile/*'
+        '/api/mobiles',
+        '/api/mobiles/*',
+        '/api/moviesnowplaying',
+        '/api/moviesbrowse',
+        '/api/moviescomingsoon',
+        '/api/m_pemesanan'
     ];
 }

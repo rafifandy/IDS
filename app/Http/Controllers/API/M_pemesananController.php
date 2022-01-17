@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 
-class MobileController extends Controller
+class M_pemesananController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,11 @@ class MobileController extends Controller
      */
     public function index()
     {
-        $userm = DB::table('usermobile')->get();
+        $userm = DB::table('m_pemesanan')->get();
         //dd($customer);
         return response()->json([
             'success' => true,
-            'message' => 'usermobile',
+            'message' => 'm_pemesanan',
             'data' => $userm,
         ], 200);
     }
@@ -44,11 +44,11 @@ class MobileController extends Controller
     public function store(Request $request)
     {
         $arr = array(
-            'name' => $request->name,
+            'id_movie' => $request->id_movie,
+            'kursi' => $request->kursi,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
         );
-        DB::table('usermobile')->insert($arr);
+        DB::table('m_pemesanan')->insert($arr);
 
         return response()->json([
             'status' => 'succcess',

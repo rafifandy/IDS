@@ -7,9 +7,14 @@ use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_toko;
 use App\Http\Controllers\API\C_buku;
 use App\Http\Controllers\API\C_coba;
-use App\Http\Controllers\API\MobileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\C_scoreboard;
+
+use App\Http\Controllers\API\MobileController;
+use App\Http\Controllers\API\Movie0Controller;
+use App\Http\Controllers\API\Movie1Controller;
+use App\Http\Controllers\API\Movie2Controller;
+use App\Http\Controllers\API\M_pemesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,8 +60,12 @@ Route::post('/toko/hasil',[C_toko::class,'getDistanceFromLatLonInKm']);
 //api
 Route::resource('/api/buku',C_buku::class);
 Route::resource('/api/coba',C_coba::class);
-Route::resource('/api/mobile',MobileController::class);
 
+Route::resource('/api/mobiles',MobileController::class);
+Route::resource('/api/moviesnowplaying',Movie1Controller::class);
+Route::resource('/api/moviesbrowse',Movie0Controller::class);
+Route::resource('/api/moviescomingsoon',Movie2Controller::class);
+Route::resource('/api/m_pemesanan',M_pemesananController::class);
 
 Auth::routes();
 
